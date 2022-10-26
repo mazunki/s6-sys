@@ -1,0 +1,3 @@
+#!/bin/execlineb -P
+define MOUNTPOINT /sys/fs/fuse/connections
+if -nt { grep -qw $MOUNTPOINT /proc/mounts } fdmove -c 2 1 redirfd -w 1 /dev/null umount $MOUNTPOINT

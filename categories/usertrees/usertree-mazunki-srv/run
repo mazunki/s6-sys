@@ -1,0 +1,8 @@
+#!/bin/execlineb -P
+emptyenv -p
+envfile /etc/s6/config/user-mazunki.conf
+
+foreground { install -d -o "mazunki" -g "mazunki"  -m 0700 "/run/user/1997" }
+foreground { install -d -o "mazunki" -g "mazunki" "/run/user/1997/s6" }
+foreground { install -d -o "mazunki" -g "mazunki" "/run/user/1997/s6/service" }
+s6-setuidgid "mazunki" exec s6-svscan -d 3 "/run/user/1997/s6/service"

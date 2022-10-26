@@ -1,0 +1,8 @@
+#!/bin/execlineb -P
+define MOUNTPOINT /sys/fs/fuse/connections
+foreground { if -nt { grep -qw fuse /proc/filesystems } fdmove -c 2 1 redirfd -w 1 /dev/null modprobe fuse }
+if -t { grep -qw fusectl /proc/filesystems }
+foreground {
+    if -nt { grep -qw $MOUNTPOINT /proc/mounts }
+    fdmove -c 2 1 redirfd -w 1 /dev/null mount -t fusectl none $MOUNTPOINT
+}

@@ -1,0 +1,2 @@
+#!/bin/sh
+systemd-tmpfiles --prefix=/dev --create --boot

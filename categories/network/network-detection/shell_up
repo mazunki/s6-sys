@@ -1,0 +1,11 @@
+#!/bin/sh
+[ -r /etc/s6/config/network-detection.conf ] && . /etc/s6/config/network-detection.conf
+if [ $SECONDS = 0 ]; then
+	SECONDS=60
+fi
+end=$(( $(date +%s) + $SECONDS ))
+while [ $(date +%s) -lt $end ]; do
+	/sbin/ip route | grep -q "default" && exit 0 || s6-rc -u change net
+	sleep 1
+done
+exit 1

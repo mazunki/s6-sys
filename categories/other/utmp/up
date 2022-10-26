@@ -1,0 +1,3 @@
+#!/bin/execlineb -P
+foreground { forx RF { wtmp btmp } importas RF RF install -Dm664 -o root -g utmp /dev/null /log/ }
+foreground { forx RF { utmp } importas RF RF install -Dm664 -o root -g utmp /dev/null /run/ }

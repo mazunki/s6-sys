@@ -1,0 +1,6 @@
+#!/bin/execlineb -P
+envfile /etc/s6/config/tlp.conf
+importas -sCuD "n3 s2000000 T" DIRECTIVES DIRECTIVES
+foreground { if -n -t { test -d /var/log/tlp } install -dm 755 -o s6log -g s6log /var/log/tlp }
+fdmove -c 2 1
+pipeline { tlp init start } s6-setuidgid s6log exec -c s6-log -b -- ${DIRECTIVES} /var/log/tlp

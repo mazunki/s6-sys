@@ -1,0 +1,4 @@
+#!/bin/execlineb -P
+foreground { /sbin/ip link set up dev enp6s0 }
+foreground { /sbin/ip addr add 10.13.37.97/8 broadcast 255.0.0.0 dev enp6s0 }
+exec /sbin/ip route add default via 10.10.10.10 dev enp6s0

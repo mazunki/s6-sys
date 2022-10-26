@@ -1,0 +1,2 @@
+#!/bin/execlineb -P
+background { sh /etc/s6/src/network/network-detection/shell_up }

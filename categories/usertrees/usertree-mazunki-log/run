@@ -1,0 +1,4 @@
+#!/bin/execlineb -P
+foreground { install -d -o "mazunki" -g "mazunki" "/home/mazunki/.local/logs/s6" }
+s6-setuidgid "mazunki"
+/home/mazunki/.local/bin/s6-userlogger "usertree-mazunki"
